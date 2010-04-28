@@ -18,7 +18,7 @@
     function transmogrify() {
       var t10y = $('#t10y').val();
       if (t10y.length >= 3) {
-        $('#t10y').val(t10y[0] + t10y.substring(1, t10y.length - 2).length + t10y[t10y.length - 1]);
+        $('#t10y').val(t10y[0] + t10y.substring(1, t10y.length - 1).length + t10y[t10y.length - 1]);
       }
     }
     $(function() {
@@ -27,6 +27,10 @@
         transmogrify();
       });
       
+      $('form').submit(function(event) {
+        event.preventDefault();
+        transmogrify();
+      });
       if (gup('t10y')) {
         $('#t10y').val(gup('t10y'));
         transmogrify();
