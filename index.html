@@ -40,10 +40,12 @@
       });
       
       if (gup('t10y')) {
+        link(gup('t10y'));
         $('#t10y').val(gup('t10y'));
         transmogrify();
+      } else {
+        link($('#t10y').val());
       }
-      link($('#t10y').val());
     });
     </script>
     <style type="text/css" media="screen">
