@@ -3,14 +3,34 @@
     <title>i18nify anything!</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8">
+    function gup( name )
+    {
+      name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+      var regexS = "[\\?&]"+name+"=([^&#]*)";
+      var regex = new RegExp( regexS );
+      var results = regex.exec( window.location.href );
+      if( results == null )
+        return "";
+      else
+        return results[1];
+    }
+
+    function transmogrify() {
+      var t10y = $('#t10y').val();
+      if (t10y.length >= 3) {
+        $('#t10y').val(t10y[0] + t10y.substring(1, t10y.length - 2).length + t10y[t10y.length - 1]);
+      }
+    }
     $(function() {
-      $('input[type=submit]').click(function(event) {
+      $('transmogrify').click(function(event) {
         event.preventDefault();
-        var t10y = $('#t10y').val();
-        if (t10y.length >= 3) {
-          $('#t10y').val(t10y[0] + t10y.substring(1, t10y.length - 2).length + t10y[t10y.length - 1]);
-        }
+        transmogrify();
       });
+      
+      if (gup('t10y')) {
+        $('#t10y').val(gup('t10y'));
+        transmogrify();
+      }
     });
     </script>
     <style type="text/css" media="screen">
@@ -40,7 +60,7 @@
   
   <form action="#">
     <input type="text" value="internationalization" id="t10y"/>
-    <input type="submit" value="Transmogrify!"/>
+    <input type="submit" value="Transmogrify!" id="transmogrify"/>
   </form>
   <body>
 </html>
