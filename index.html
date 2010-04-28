@@ -22,7 +22,7 @@
       }
     }
     $(function() {
-      $('transmogrify').click(function(event) {
+      $('#transmogrify').click(function(event) {
         event.preventDefault();
         transmogrify();
       });
@@ -31,6 +31,7 @@
         event.preventDefault();
         transmogrify();
       });
+      
       if (gup('t10y')) {
         $('#t10y').val(gup('t10y'));
         transmogrify();
