@@ -20,6 +20,13 @@
       if (t10y.length >= 3) {
         $('#t10y').val(t10y[0] + t10y.substring(1, t10y.length - 1).length + t10y[t10y.length - 1]);
       }
+      
+      link(t10y);
+    }
+    
+    function link(t10y) {
+      var link = window.location.pathname + "?t10y=" + t10y;
+      $('#help #link').empty().append('<a href="' + link + '">' + link + '</a>');
     }
     $(function() {
       $('#transmogrify').click(function(event) {
@@ -36,6 +43,7 @@
         $('#t10y').val(gup('t10y'));
         transmogrify();
       }
+      link($('#t10y').val());
     });
     </script>
     <style type="text/css" media="screen">
@@ -58,7 +66,11 @@
         font-size: 16px;
         background: #ffffff;
         margin-bottom: 10px;
-        
+      }
+      
+      a, a:visited, a:hover, a:active {
+        text-decoration: none;
+        color: white;
       }
     </style>
   </head>
@@ -67,5 +79,9 @@
     <input type="text" value="internationalization" id="t10y"/>
     <input type="submit" value="Transmogrify!" id="transmogrify"/>
   </form>
+  
+  <div id="help">
+    Direct link to this transmogrification: <span id="link"></span>
+  </div>
   <body>
 </html>
