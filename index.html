@@ -40,9 +40,9 @@
       });
       
       if (gup('t10y')) {
-        link(gup('t10y'));
         $('#t10y').val(gup('t10y'));
         transmogrify();
+        link(gup('t10y'));
       } else {
         link($('#t10y').val());
       }
